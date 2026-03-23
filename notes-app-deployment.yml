@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: deployment
+metadata:
+  name: notes-app
+  labels:
+   component: notes-app
+spec:
+  replicas: 3
+  selector:
+   matchlabels:
+    component: notes-app
+  template:
+   metadata:
+    labels:
+     component: notes-app
+   spec:
+    containers:
+     - name: notes-app
+       image: vedant7669/notes-app:v1
+       ports:
+        - containerPort: 8000
