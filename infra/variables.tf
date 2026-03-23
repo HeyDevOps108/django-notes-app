@@ -1,7 +1,5 @@
 variable "notes_ami_id" {
-  default = [
-    "ami-07062e2a343acc423"
-    ]
+  default = "ami-07062e2a343acc423"
   type = string
 }
 
