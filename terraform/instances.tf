@@ -9,7 +9,7 @@ resource "aws_default_vpc" "notes-app-vpc" {
 resource "aws_security_group" "notes-app-sg" {
   name = "notes-app-sg"
   description = "this rule created for notes-notes-app"
-  vpc_id = aws_default_vpc.notes-app-vpc
+  vpc_id = aws_default_vpc.notes-app-vpc.id
 
   ingress  {
     from_port = 22
