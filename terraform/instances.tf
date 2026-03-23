@@ -39,8 +39,8 @@ resource "aws_instance" "notes-app" {
         notes-app-2 = "t2.micro"
     })
   key_name = aws_key_pair.note-app-key-pair.key_name
-  security_groups = [ aws_security_group.notes-app-sg.id ]
-  instance_type = each.key
+  security_groups = [ aws_security_group.notes-app-sg.name ]
+  instance_type = each.value
   ami = var.notes_ami_id
   user_data = file("install.sh")
   root_block_device {
