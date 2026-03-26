@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-controller
   namespace: nginx   # change if your services are in another namespace
+  annotations:  
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
