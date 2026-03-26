@@ -5,18 +5,19 @@ metadata:
   namespace: nginx
 spec:
   rules:
-   -http:
-    paths:
-    - pathType: Prefix
-      path: /nginx
-      backend:
-       service:
-        name: nginx-service
-        port: 80
-    - pathType: Prefix
-      path: /app
-      backend:
-       service:
-        name: notes-app-service
-        port: 
-         number: 8000
+   - http:
+      paths:
+       - pathType: Prefix
+         path: /nginx
+         backend:
+          service:
+          name: nginx-service
+          port: 
+           number: 80
+       - pathType: Prefix
+         path: /app
+         backend:
+          service:
+          name: notes-app-service
+          port: 
+           number: 8000
