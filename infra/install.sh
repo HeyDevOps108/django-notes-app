@@ -53,6 +53,8 @@ if ! command -v kubectl >/dev/null 2>&1; then
 
   sudo apt install -y apt-transport-https ca-certificates curl
 
+  sudo usermod -aG docker ubuntu
+
   curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
   echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -81,3 +83,29 @@ kubectl version --client --output=yaml
 
 echo
 echo "🎉 Docker, Kind, and kubectl installation complete!"
+
+echo "installing k8s cluster"
+
+cat <<EOF > kind-config.yml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role : control-plane
+    image: kindest/node:v1.33.1
+  - role : worker
+    image: kindest/node:v1.33.1
+    extraPortMappings:
+     - containerPort: 80
+       protocol: TCP
+     - containerPort: 443
+       protocol: TCP
+EOF
+
+kind create cluster --config kind-config.yml --name notes-app-cluster
+
+export HOME=/ubuntu
+export KUBECONFIG=/ubuntu/.kube/config
+
+# explicitly save kubeconfig
+mkdir -p /ubuntu/.kube
+kind get kubeconfig --name notes-app-cluster > /ubuntu/.kube/config
