@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: react-ingress
   namespace: preprod
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
