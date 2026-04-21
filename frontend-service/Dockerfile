@@ -1,9 +1,8 @@
 FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/html
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY dist/Folio/* .
+COPY dist/Folio/ /usr/share/nginx/html/
 COPY frontend-service/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
