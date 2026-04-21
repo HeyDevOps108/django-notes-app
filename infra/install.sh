@@ -103,9 +103,4 @@ EOF
 
 kind create cluster --config kind-config.yml --name notes-app-cluster
 
-export HOME=/ubuntu
-export KUBECONFIG=/ubuntu/.kube/config
-
-# explicitly save kubeconfig
-mkdir -p /ubuntu/.kube
-kind get kubeconfig --name notes-app-cluster > /ubuntu/.kube/config
+kind export kubeconfig --name notes-app-cluster

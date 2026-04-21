@@ -32,6 +32,13 @@ resource "aws_security_group" "notes-app-sg" {
     cidr_blocks = [ "0.0.0.0/0" ]
   }
 
+  ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
+
   egress {
     from_port = 0
     to_port = 0
@@ -42,8 +49,8 @@ resource "aws_security_group" "notes-app-sg" {
 
 resource "aws_instance" "notes-app" {
     for_each = ({
-        notes-app-1 = "t2.medium"
-        notes-app-2 = "t2.micro"
+        # notes-app-1 = "t2.medium"
+        notes-app-2 = "t3.small"
     })
   key_name = aws_key_pair.note-app-key-pair.key_name
   security_groups = [ aws_security_group.notes-app-sg.name ]

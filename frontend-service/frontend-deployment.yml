@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  namespace: preprod
+  labels:
+    app: frontend-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-app
+          image: vedant7669/frontend-app:1.0
+          ports:
+            - containerPort: 8080
+  
