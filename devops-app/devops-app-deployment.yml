@@ -18,5 +18,5 @@ spec:
       - name: devops-app
         image: vedant7669/devops-app:1.0
         ports:
-          - containerPort: 8080  
+          - containerPort: 80
   
