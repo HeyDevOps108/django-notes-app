@@ -5,19 +5,21 @@ metadata:
   namespace: preprod
   labels:
     app: frontend-app
+
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: frontend-app
+
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-app
+
     spec:
       containers:
-        - name: frontend-app
-          image: vedant7669/frontend-app:1.0
-          ports:
-            - containerPort: 80
-  
+      - name: frontend-app
+        image: vedant7669/frontend-app:1.0
+        ports:
+        - containerPort: 80
