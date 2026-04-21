@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: devops-app
-        image: vedant7669/devops-app:1.0
+        image: vedant7669/devops-app:2.0
         ports:
         - containerPort: 80
